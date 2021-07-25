@@ -58,44 +58,256 @@ const Match = ({ contractAddress, back, web3 }) => {
 
   console.log(matchData);
 
+  /*
+  Initial,
+        Announced,
+        Protested,
+        Disputed,
+        Resolved */
+
+  const renderStatus = (status) => {
+    switch (status) {
+      case "0":
+        return "Initial";
+      case "1":
+        return "Announced";
+      case "2":
+        return "Protested";
+      case "3":
+        return "Disputed";
+      case "4":
+        return "Resolved";
+    }
+  };
+
   return (
     <div>
       <button onClick={back}>Back</button>
       <div>Match Address: {contractAddress.address}</div>
       <div>Match Title: {matchData.meta}</div>
+      <div>Player 1: {matchData.player1}</div>
+      <div>Player 2: {matchData.player2}</div>
+      <div>Match Status: {renderStatus(matchData.status)}</div>
+      {matchData.winner != "0" && (
+        <div>
+          Current Winner:{" "}
+          {matchData.winner == "1" ? matchData.player1 : matchData.player2}
+        </div>
+      )}
       {matchData.status == "0" &&
         (accounts[0] == matchData.player1 ||
-          accounts[0] == matchData.player2) && <button>Announce Winner</button>}
+          accounts[0] == matchData.player2) && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .announceWinner("1")
+                .send({ from: accounts[0] })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Player 1 Won
+          </button>
+        )}
+      {matchData.status == "0" &&
+        (accounts[0] == matchData.player1 ||
+          accounts[0] == matchData.player2) && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .announceWinner("1")
+                .send({ from: accounts[0] })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Player 2 Won
+          </button>
+        )}
       {matchData.status == "1" &&
         (accounts[0] == matchData.player1 ||
           accounts[0] == matchData.player2) &&
-        accounts[0] != matchData.announcer && <button>Accept Result</button>}
+        accounts[0] != matchData.announcer && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .acceptResult()
+                .send({ from: accounts[0] })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Accept Result
+          </button>
+        )}
       {matchData.status == "1" &&
         (accounts[0] == matchData.player1 ||
           accounts[0] == matchData.player2) &&
-        accounts[0] != matchData.announcer && <button>Protest Result</button>}
+        accounts[0] != matchData.announcer && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .protestResult()
+                .send({ from: accounts[0], value: 1000000000000000 })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Protest Result
+          </button>
+        )}
 
       {matchData.status == "1" &&
         (accounts[0] == matchData.player1 ||
           accounts[0] == matchData.player2) &&
-        accounts[0] == matchData.announcer && <button>Finalize Result</button>}
+        accounts[0] == matchData.announcer && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .finalizeResult()
+                .send({ from: accounts[0] })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Finalize Result
+          </button>
+        )}
 
       {matchData.status == "2" &&
         (accounts[0] == matchData.player1 ||
           accounts[0] == matchData.player2) &&
-        accounts[0] != matchData.announcer && <button>Revert Result</button>}
+        accounts[0] != matchData.announcer && (
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .revertResult(matchData.winner == "1" ? "2" : "1")
+                .send({ from: accounts[0] })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Revert Result
+          </button>
+        )}
 
       {matchData.status == "2" &&
         (accounts[0] == matchData.player1 ||
           accounts[0] == matchData.player2) &&
         accounts[0] == matchData.announcer && (
-          <button>Deposit Arbitration Fee</button>
+          <button
+            onClick={() => {
+              const dematch = new web3.eth.Contract(
+                DeMatchContract.abi,
+                contractAddress.address
+              );
+
+              dematch.methods
+                .depositArbitrationFeeForAnnouncer()
+                .send({ from: accounts[0], value: 1000000000000000 })
+                .then((data) => {
+                  console.log(data);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setReloads(reloads + 1);
+                });
+            }}
+          >
+            Deposit Arbitration Fee
+          </button>
         )}
 
       {(matchData.status == "4" &&
         (matchData.winner = 1 && accounts[0] == matchData.player1)) ||
         (matchData.winner == 2 && accounts[0] == matchData.player2 && (
-          <button>Withdraw Funds</button>
+          <button
+            onClick={() => {
+              const tS = new web3.eth.Contract(
+                SimpleTournamentsContract.abi,
+                TournamentAddress
+              );
+              tS.methods
+                .withdrawFunds(contractAddress.id)
+                .send({ from: accounts[0] })
+                .then((r) => {
+                  console.log(r);
+                  setReloads(reloads + 1);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }}
+          >
+            Withdraw Funds
+          </button>
         ))}
     </div>
   );
@@ -191,6 +403,10 @@ const Main = ({ web3 }) => {
           <button
             onClick={() => {
               setScreen("main");
+              const tS = new web3.eth.Contract(
+                SimpleTournamentsContract.abi,
+                TournamentAddress
+              );
             }}
           >
             Cancel{" "}
