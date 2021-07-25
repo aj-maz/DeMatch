@@ -131,7 +131,7 @@ const Match = ({ contractAddress, back, web3 }) => {
               );
 
               dematch.methods
-                .announceWinner("1")
+                .announceWinner("2")
                 .send({ from: accounts[0] })
                 .then((data) => {
                   console.log(data);
