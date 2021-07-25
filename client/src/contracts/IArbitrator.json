@@ -1,0 +1,2439 @@
+{
+  "contractName": "IArbitrator",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "AppealDecision",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "AppealPossible",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IArbitrable",
+          "name": "_arbitrable",
+          "type": "address"
+        }
+      ],
+      "name": "DisputeCreation",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_choices",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "createDispute",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "disputeID",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "arbitrationCost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cost",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "appeal",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_extraData",
+          "type": "bytes"
+        }
+      ],
+      "name": "appealCost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "cost",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "appealPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "start",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "end",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "disputeStatus",
+      "outputs": [
+        {
+          "internalType": "enum IArbitrator.DisputeStatus",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_disputeID",
+          "type": "uint256"
+        }
+      ],
+      "name": "currentRuling",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "ruling",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"AppealDecision\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"AppealPossible\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IArbitrable\",\"name\":\"_arbitrable\",\"type\":\"address\"}],\"name\":\"DisputeCreation\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"appeal\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"appealCost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"appealPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"start\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"end\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"arbitrationCost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"cost\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_choices\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_extraData\",\"type\":\"bytes\"}],\"name\":\"createDispute\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"disputeID\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"currentRuling\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"ruling\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_disputeID\",\"type\":\"uint256\"}],\"name\":\"disputeStatus\",\"outputs\":[{\"internalType\":\"enum IArbitrator.DisputeStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"AppealDecision(uint256,address)\":{\"details\":\"To be emitted when the current ruling is appealed.\",\"params\":{\"_arbitrable\":\"The contract which created the dispute.\",\"_disputeID\":\"ID of the dispute.\"}},\"AppealPossible(uint256,address)\":{\"details\":\"To be emitted when a dispute can be appealed.\",\"params\":{\"_arbitrable\":\"The contract which created the dispute.\",\"_disputeID\":\"ID of the dispute.\"}},\"DisputeCreation(uint256,address)\":{\"details\":\"To be emitted when a dispute is created.\",\"params\":{\"_arbitrable\":\"The contract which created the dispute.\",\"_disputeID\":\"ID of the dispute.\"}}},\"kind\":\"dev\",\"methods\":{\"appeal(uint256,bytes)\":{\"details\":\"Appeal a ruling. Note that it has to be called before the arbitrator contract calls rule.\",\"params\":{\"_disputeID\":\"ID of the dispute to be appealed.\",\"_extraData\":\"Can be used to give extra info on the appeal.\"}},\"appealCost(uint256,bytes)\":{\"details\":\"Compute the cost of appeal. It is recommended not to increase it often, as it can be higly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\",\"params\":{\"_disputeID\":\"ID of the dispute to be appealed.\",\"_extraData\":\"Can be used to give additional info on the dispute to be created.\"},\"returns\":{\"cost\":\"Amount to be paid.\"}},\"appealPeriod(uint256)\":{\"details\":\"Compute the start and end of the dispute's current or next appeal period, if possible. If not known or appeal is impossible: should return (0, 0).\",\"params\":{\"_disputeID\":\"ID of the dispute.\"},\"returns\":{\"end\":\"The end of the period.\",\"start\":\"The start of the period.\"}},\"arbitrationCost(bytes)\":{\"details\":\"Compute the cost of arbitration. It is recommended not to increase it often, as it can be highly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\",\"params\":{\"_extraData\":\"Can be used to give additional info on the dispute to be created.\"},\"returns\":{\"cost\":\"Amount to be paid.\"}},\"createDispute(uint256,bytes)\":{\"details\":\"Create a dispute. Must be called by the arbitrable contract. Must be paid at least arbitrationCost(_extraData).\",\"params\":{\"_choices\":\"Amount of choices the arbitrator can make in this dispute.\",\"_extraData\":\"Can be used to give additional info on the dispute to be created.\"},\"returns\":{\"disputeID\":\"ID of the dispute created.\"}},\"currentRuling(uint256)\":{\"details\":\"Return the current ruling of a dispute. This is useful for parties to know if they should appeal.\",\"params\":{\"_disputeID\":\"ID of the dispute.\"},\"returns\":{\"ruling\":\"The ruling which has been given or the one which will be given if there is no appeal.\"}},\"disputeStatus(uint256)\":{\"details\":\"Return the status of a dispute.\",\"params\":{\"_disputeID\":\"ID of the dispute to rule.\"},\"returns\":{\"status\":\"The status of the dispute.\"}}},\"title\":\"Arbitrator Arbitrator abstract contract. When developing arbitrator contracts we need to: - Define the functions for dispute creation (createDispute) and appeal (appeal). Don't forget to store the arbitrated contract and the disputeID (which should be unique, may nbDisputes). - Define the functions for cost display (arbitrationCost and appealCost). - Allow giving rulings. For this a function must call arbitrable.rule(disputeID, ruling).\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IArbitrator.sol\":\"IArbitrator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IArbitrable.sol\":{\"keccak256\":\"0xbb56afa60f4106c18eeedf8486040890345e4963f79f556b1046af414989dc9a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ae57e4e66390e8b3297869f9e9c171bef6574c037d0337771ca14bc859f9e5d2\",\"dweb:/ipfs/QmTE2FvJB3zeGBk8y94gsYYGZX5P8zfHtnKmhzp1217dte\"]},\"project:/contracts/IArbitrator.sol\":{\"keccak256\":\"0xc23074d93a170ceda388e930958bfba087da5f2868f85c9d208a9d42a4550e3a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b79681f5acfde83c5961cbf6a597acea219f52e3facff6311ff8cce97055f647\",\"dweb:/ipfs/QmTkcVf1g9qJdQiPU29VSvQYnq2EktCvrPhYx8cyRCMe9e\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "/**\n * @authors: [@ferittuncer, @hbarcelos]\n * @reviewers: [@remedcu]\n * @auditors: []\n * @bounties: []\n * @deployments: []\n * SPDX-License-Identifier: MIT\n */\n\npragma solidity >=0.7;\n\nimport \"./IArbitrable.sol\";\n\n/**\n * @title Arbitrator\n * Arbitrator abstract contract.\n * When developing arbitrator contracts we need to:\n * - Define the functions for dispute creation (createDispute) and appeal (appeal). Don't forget to store the arbitrated contract and the disputeID (which should be unique, may nbDisputes).\n * - Define the functions for cost display (arbitrationCost and appealCost).\n * - Allow giving rulings. For this a function must call arbitrable.rule(disputeID, ruling).\n */\ninterface IArbitrator {\n    enum DisputeStatus {Waiting, Appealable, Solved}\n\n    /**\n     * @dev To be emitted when a dispute is created.\n     * @param _disputeID ID of the dispute.\n     * @param _arbitrable The contract which created the dispute.\n     */\n    event DisputeCreation(uint256 indexed _disputeID, IArbitrable indexed _arbitrable);\n\n    /**\n     * @dev To be emitted when a dispute can be appealed.\n     * @param _disputeID ID of the dispute.\n     * @param _arbitrable The contract which created the dispute.\n     */\n    event AppealPossible(uint256 indexed _disputeID, IArbitrable indexed _arbitrable);\n\n    /**\n     * @dev To be emitted when the current ruling is appealed.\n     * @param _disputeID ID of the dispute.\n     * @param _arbitrable The contract which created the dispute.\n     */\n    event AppealDecision(uint256 indexed _disputeID, IArbitrable indexed _arbitrable);\n\n    /**\n     * @dev Create a dispute. Must be called by the arbitrable contract.\n     * Must be paid at least arbitrationCost(_extraData).\n     * @param _choices Amount of choices the arbitrator can make in this dispute.\n     * @param _extraData Can be used to give additional info on the dispute to be created.\n     * @return disputeID ID of the dispute created.\n     */\n    function createDispute(uint256 _choices, bytes calldata _extraData) external payable returns (uint256 disputeID);\n\n    /**\n     * @dev Compute the cost of arbitration. It is recommended not to increase it often, as it can be highly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n     * @param _extraData Can be used to give additional info on the dispute to be created.\n     * @return cost Amount to be paid.\n     */\n    function arbitrationCost(bytes calldata _extraData) external view returns (uint256 cost);\n\n    /**\n     * @dev Appeal a ruling. Note that it has to be called before the arbitrator contract calls rule.\n     * @param _disputeID ID of the dispute to be appealed.\n     * @param _extraData Can be used to give extra info on the appeal.\n     */\n    function appeal(uint256 _disputeID, bytes calldata _extraData) external payable;\n\n    /**\n     * @dev Compute the cost of appeal. It is recommended not to increase it often, as it can be higly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n     * @param _disputeID ID of the dispute to be appealed.\n     * @param _extraData Can be used to give additional info on the dispute to be created.\n     * @return cost Amount to be paid.\n     */\n    function appealCost(uint256 _disputeID, bytes calldata _extraData) external view returns (uint256 cost);\n\n    /**\n     * @dev Compute the start and end of the dispute's current or next appeal period, if possible. If not known or appeal is impossible: should return (0, 0).\n     * @param _disputeID ID of the dispute.\n     * @return start The start of the period.\n     * @return end The end of the period.\n     */\n    function appealPeriod(uint256 _disputeID) external view returns (uint256 start, uint256 end);\n\n    /**\n     * @dev Return the status of a dispute.\n     * @param _disputeID ID of the dispute to rule.\n     * @return status The status of the dispute.\n     */\n    function disputeStatus(uint256 _disputeID) external view returns (DisputeStatus status);\n\n    /**\n     * @dev Return the current ruling of a dispute. This is useful for parties to know if they should appeal.\n     * @param _disputeID ID of the dispute.\n     * @return ruling The ruling which has been given or the one which will be given if there is no appeal.\n     */\n    function currentRuling(uint256 _disputeID) external view returns (uint256 ruling);\n}\n",
+  "sourcePath": "/home/ajand/Desktop/projects/web3/kleros/contracts/IArbitrator.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/IArbitrator.sol",
+    "exportedSymbols": {
+      "IArbitrable": [
+        730
+      ],
+      "IArbitrator": [
+        826
+      ]
+    },
+    "id": 827,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 732,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "161:22:3"
+      },
+      {
+        "absolutePath": "project:/contracts/IArbitrable.sol",
+        "file": "./IArbitrable.sol",
+        "id": 733,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 827,
+        "sourceUnit": 731,
+        "src": "185:27:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 734,
+          "nodeType": "StructuredDocumentation",
+          "src": "214:473:3",
+          "text": " @title Arbitrator\n Arbitrator abstract contract.\n When developing arbitrator contracts we need to:\n - Define the functions for dispute creation (createDispute) and appeal (appeal). Don't forget to store the arbitrated contract and the disputeID (which should be unique, may nbDisputes).\n - Define the functions for cost display (arbitrationCost and appealCost).\n - Allow giving rulings. For this a function must call arbitrable.rule(disputeID, ruling)."
+        },
+        "fullyImplemented": false,
+        "id": 826,
+        "linearizedBaseContracts": [
+          826
+        ],
+        "name": "IArbitrator",
+        "nameLocation": "698:11:3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IArbitrator.DisputeStatus",
+            "id": 738,
+            "members": [
+              {
+                "id": 735,
+                "name": "Waiting",
+                "nameLocation": "736:7:3",
+                "nodeType": "EnumValue",
+                "src": "736:7:3"
+              },
+              {
+                "id": 736,
+                "name": "Appealable",
+                "nameLocation": "745:10:3",
+                "nodeType": "EnumValue",
+                "src": "745:10:3"
+              },
+              {
+                "id": 737,
+                "name": "Solved",
+                "nameLocation": "757:6:3",
+                "nodeType": "EnumValue",
+                "src": "757:6:3"
+              }
+            ],
+            "name": "DisputeStatus",
+            "nameLocation": "721:13:3",
+            "nodeType": "EnumDefinition",
+            "src": "716:48:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 739,
+              "nodeType": "StructuredDocumentation",
+              "src": "770:174:3",
+              "text": " @dev To be emitted when a dispute is created.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 746,
+            "name": "DisputeCreation",
+            "nameLocation": "955:15:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 745,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 741,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "987:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 746,
+                  "src": "971:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 740,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "971:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 744,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1019:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 746,
+                  "src": "999:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 743,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 742,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "999:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "999:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "970:61:3"
+            },
+            "src": "949:83:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 747,
+              "nodeType": "StructuredDocumentation",
+              "src": "1038:179:3",
+              "text": " @dev To be emitted when a dispute can be appealed.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 754,
+            "name": "AppealPossible",
+            "nameLocation": "1228:14:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 753,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 749,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "1259:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 754,
+                  "src": "1243:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 748,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1243:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 752,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1291:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 754,
+                  "src": "1271:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 751,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 750,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "1271:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "1271:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1242:61:3"
+            },
+            "src": "1222:82:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 755,
+              "nodeType": "StructuredDocumentation",
+              "src": "1310:184:3",
+              "text": " @dev To be emitted when the current ruling is appealed.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 762,
+            "name": "AppealDecision",
+            "nameLocation": "1505:14:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 761,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 757,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "1536:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 762,
+                  "src": "1520:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 756,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1520:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 760,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1568:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 762,
+                  "src": "1548:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 759,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 758,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "1548:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "1548:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1519:61:3"
+            },
+            "src": "1499:82:3"
+          },
+          {
+            "documentation": {
+              "id": 763,
+              "nodeType": "StructuredDocumentation",
+              "src": "1587:367:3",
+              "text": " @dev Create a dispute. Must be called by the arbitrable contract.\n Must be paid at least arbitrationCost(_extraData).\n @param _choices Amount of choices the arbitrator can make in this dispute.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return disputeID ID of the dispute created."
+            },
+            "functionSelector": "c13517e1",
+            "id": 772,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createDispute",
+            "nameLocation": "1968:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 768,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 765,
+                  "mutability": "mutable",
+                  "name": "_choices",
+                  "nameLocation": "1990:8:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "1982:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 764,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1982:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 767,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2015:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "2000:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 766,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2000:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1981:45:3"
+            },
+            "returnParameters": {
+              "id": 771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 770,
+                  "mutability": "mutable",
+                  "name": "disputeID",
+                  "nameLocation": "2061:9:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "2053:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 769,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2053:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2052:19:3"
+            },
+            "scope": 826,
+            "src": "1959:113:3",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 773,
+              "nodeType": "StructuredDocumentation",
+              "src": "2078:333:3",
+              "text": " @dev Compute the cost of arbitration. It is recommended not to increase it often, as it can be highly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return cost Amount to be paid."
+            },
+            "functionSelector": "f7434ea9",
+            "id": 780,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbitrationCost",
+            "nameLocation": "2425:15:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 775,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2456:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "2441:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 774,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2441:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2440:27:3"
+            },
+            "returnParameters": {
+              "id": 779,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 778,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "2499:4:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "2491:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 777,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2491:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2490:14:3"
+            },
+            "scope": 826,
+            "src": "2416:89:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 781,
+              "nodeType": "StructuredDocumentation",
+              "src": "2511:243:3",
+              "text": " @dev Appeal a ruling. Note that it has to be called before the arbitrator contract calls rule.\n @param _disputeID ID of the dispute to be appealed.\n @param _extraData Can be used to give extra info on the appeal."
+            },
+            "functionSelector": "49912f88",
+            "id": 788,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appeal",
+            "nameLocation": "2768:6:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 786,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 783,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "2783:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 788,
+                  "src": "2775:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 782,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2775:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 785,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2810:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 788,
+                  "src": "2795:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 784,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2795:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2774:47:3"
+            },
+            "returnParameters": {
+              "id": 787,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2838:0:3"
+            },
+            "scope": 826,
+            "src": "2759:80:3",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 789,
+              "nodeType": "StructuredDocumentation",
+              "src": "2845:386:3",
+              "text": " @dev Compute the cost of appeal. It is recommended not to increase it often, as it can be higly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n @param _disputeID ID of the dispute to be appealed.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return cost Amount to be paid."
+            },
+            "functionSelector": "f23f16e6",
+            "id": 798,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appealCost",
+            "nameLocation": "3245:10:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 791,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3264:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3256:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 790,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3256:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 793,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "3291:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3276:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3276:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3255:47:3"
+            },
+            "returnParameters": {
+              "id": 797,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 796,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "3334:4:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3326:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 795,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3326:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3325:14:3"
+            },
+            "scope": 826,
+            "src": "3236:104:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 799,
+              "nodeType": "StructuredDocumentation",
+              "src": "3346:302:3",
+              "text": " @dev Compute the start and end of the dispute's current or next appeal period, if possible. If not known or appeal is impossible: should return (0, 0).\n @param _disputeID ID of the dispute.\n @return start The start of the period.\n @return end The end of the period."
+            },
+            "functionSelector": "afe15cfb",
+            "id": 808,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appealPeriod",
+            "nameLocation": "3662:12:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 802,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 801,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3683:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3675:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 800,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3675:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3674:20:3"
+            },
+            "returnParameters": {
+              "id": 807,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 804,
+                  "mutability": "mutable",
+                  "name": "start",
+                  "nameLocation": "3726:5:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3718:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 803,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3718:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 806,
+                  "mutability": "mutable",
+                  "name": "end",
+                  "nameLocation": "3741:3:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3733:11:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 805,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3733:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3717:28:3"
+            },
+            "scope": 826,
+            "src": "3653:93:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 809,
+              "nodeType": "StructuredDocumentation",
+              "src": "3752:156:3",
+              "text": " @dev Return the status of a dispute.\n @param _disputeID ID of the dispute to rule.\n @return status The status of the dispute."
+            },
+            "functionSelector": "10f169e8",
+            "id": 817,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "disputeStatus",
+            "nameLocation": "3922:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 812,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 811,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3944:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 817,
+                  "src": "3936:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 810,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3936:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3935:20:3"
+            },
+            "returnParameters": {
+              "id": 816,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 815,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "3993:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 817,
+                  "src": "3979:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_DisputeStatus_$738",
+                    "typeString": "enum IArbitrator.DisputeStatus"
+                  },
+                  "typeName": {
+                    "id": 814,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 813,
+                      "name": "DisputeStatus",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 738,
+                      "src": "3979:13:3"
+                    },
+                    "referencedDeclaration": 738,
+                    "src": "3979:13:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_DisputeStatus_$738",
+                      "typeString": "enum IArbitrator.DisputeStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3978:22:3"
+            },
+            "scope": 826,
+            "src": "3913:88:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 818,
+              "nodeType": "StructuredDocumentation",
+              "src": "4007:273:3",
+              "text": " @dev Return the current ruling of a dispute. This is useful for parties to know if they should appeal.\n @param _disputeID ID of the dispute.\n @return ruling The ruling which has been given or the one which will be given if there is no appeal."
+            },
+            "functionSelector": "1c3db16d",
+            "id": 825,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentRuling",
+            "nameLocation": "4294:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 821,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 820,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "4316:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 825,
+                  "src": "4308:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 819,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4308:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4307:20:3"
+            },
+            "returnParameters": {
+              "id": 824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 823,
+                  "mutability": "mutable",
+                  "name": "ruling",
+                  "nameLocation": "4359:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 825,
+                  "src": "4351:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 822,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4351:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4350:16:3"
+            },
+            "scope": 826,
+            "src": "4285:82:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 827,
+        "src": "688:3681:3",
+        "usedErrors": []
+      }
+    ],
+    "src": "161:4209:3"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/IArbitrator.sol",
+    "exportedSymbols": {
+      "IArbitrable": [
+        730
+      ],
+      "IArbitrator": [
+        826
+      ]
+    },
+    "id": 827,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 732,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.7"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "161:22:3"
+      },
+      {
+        "absolutePath": "project:/contracts/IArbitrable.sol",
+        "file": "./IArbitrable.sol",
+        "id": 733,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 827,
+        "sourceUnit": 731,
+        "src": "185:27:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 734,
+          "nodeType": "StructuredDocumentation",
+          "src": "214:473:3",
+          "text": " @title Arbitrator\n Arbitrator abstract contract.\n When developing arbitrator contracts we need to:\n - Define the functions for dispute creation (createDispute) and appeal (appeal). Don't forget to store the arbitrated contract and the disputeID (which should be unique, may nbDisputes).\n - Define the functions for cost display (arbitrationCost and appealCost).\n - Allow giving rulings. For this a function must call arbitrable.rule(disputeID, ruling)."
+        },
+        "fullyImplemented": false,
+        "id": 826,
+        "linearizedBaseContracts": [
+          826
+        ],
+        "name": "IArbitrator",
+        "nameLocation": "698:11:3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "IArbitrator.DisputeStatus",
+            "id": 738,
+            "members": [
+              {
+                "id": 735,
+                "name": "Waiting",
+                "nameLocation": "736:7:3",
+                "nodeType": "EnumValue",
+                "src": "736:7:3"
+              },
+              {
+                "id": 736,
+                "name": "Appealable",
+                "nameLocation": "745:10:3",
+                "nodeType": "EnumValue",
+                "src": "745:10:3"
+              },
+              {
+                "id": 737,
+                "name": "Solved",
+                "nameLocation": "757:6:3",
+                "nodeType": "EnumValue",
+                "src": "757:6:3"
+              }
+            ],
+            "name": "DisputeStatus",
+            "nameLocation": "721:13:3",
+            "nodeType": "EnumDefinition",
+            "src": "716:48:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 739,
+              "nodeType": "StructuredDocumentation",
+              "src": "770:174:3",
+              "text": " @dev To be emitted when a dispute is created.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 746,
+            "name": "DisputeCreation",
+            "nameLocation": "955:15:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 745,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 741,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "987:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 746,
+                  "src": "971:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 740,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "971:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 744,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1019:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 746,
+                  "src": "999:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 743,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 742,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "999:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "999:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "970:61:3"
+            },
+            "src": "949:83:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 747,
+              "nodeType": "StructuredDocumentation",
+              "src": "1038:179:3",
+              "text": " @dev To be emitted when a dispute can be appealed.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 754,
+            "name": "AppealPossible",
+            "nameLocation": "1228:14:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 753,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 749,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "1259:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 754,
+                  "src": "1243:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 748,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1243:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 752,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1291:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 754,
+                  "src": "1271:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 751,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 750,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "1271:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "1271:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1242:61:3"
+            },
+            "src": "1222:82:3"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 755,
+              "nodeType": "StructuredDocumentation",
+              "src": "1310:184:3",
+              "text": " @dev To be emitted when the current ruling is appealed.\n @param _disputeID ID of the dispute.\n @param _arbitrable The contract which created the dispute."
+            },
+            "id": 762,
+            "name": "AppealDecision",
+            "nameLocation": "1505:14:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 761,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 757,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "1536:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 762,
+                  "src": "1520:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 756,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1520:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 760,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_arbitrable",
+                  "nameLocation": "1568:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 762,
+                  "src": "1548:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IArbitrable_$730",
+                    "typeString": "contract IArbitrable"
+                  },
+                  "typeName": {
+                    "id": 759,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 758,
+                      "name": "IArbitrable",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 730,
+                      "src": "1548:11:3"
+                    },
+                    "referencedDeclaration": 730,
+                    "src": "1548:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IArbitrable_$730",
+                      "typeString": "contract IArbitrable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1519:61:3"
+            },
+            "src": "1499:82:3"
+          },
+          {
+            "documentation": {
+              "id": 763,
+              "nodeType": "StructuredDocumentation",
+              "src": "1587:367:3",
+              "text": " @dev Create a dispute. Must be called by the arbitrable contract.\n Must be paid at least arbitrationCost(_extraData).\n @param _choices Amount of choices the arbitrator can make in this dispute.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return disputeID ID of the dispute created."
+            },
+            "functionSelector": "c13517e1",
+            "id": 772,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createDispute",
+            "nameLocation": "1968:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 768,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 765,
+                  "mutability": "mutable",
+                  "name": "_choices",
+                  "nameLocation": "1990:8:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "1982:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 764,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1982:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 767,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2015:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "2000:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 766,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2000:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1981:45:3"
+            },
+            "returnParameters": {
+              "id": 771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 770,
+                  "mutability": "mutable",
+                  "name": "disputeID",
+                  "nameLocation": "2061:9:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 772,
+                  "src": "2053:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 769,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2053:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2052:19:3"
+            },
+            "scope": 826,
+            "src": "1959:113:3",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 773,
+              "nodeType": "StructuredDocumentation",
+              "src": "2078:333:3",
+              "text": " @dev Compute the cost of arbitration. It is recommended not to increase it often, as it can be highly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return cost Amount to be paid."
+            },
+            "functionSelector": "f7434ea9",
+            "id": 780,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbitrationCost",
+            "nameLocation": "2425:15:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 776,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 775,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2456:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "2441:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 774,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2441:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2440:27:3"
+            },
+            "returnParameters": {
+              "id": 779,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 778,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "2499:4:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 780,
+                  "src": "2491:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 777,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2491:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2490:14:3"
+            },
+            "scope": 826,
+            "src": "2416:89:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 781,
+              "nodeType": "StructuredDocumentation",
+              "src": "2511:243:3",
+              "text": " @dev Appeal a ruling. Note that it has to be called before the arbitrator contract calls rule.\n @param _disputeID ID of the dispute to be appealed.\n @param _extraData Can be used to give extra info on the appeal."
+            },
+            "functionSelector": "49912f88",
+            "id": 788,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appeal",
+            "nameLocation": "2768:6:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 786,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 783,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "2783:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 788,
+                  "src": "2775:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 782,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2775:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 785,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "2810:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 788,
+                  "src": "2795:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 784,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2795:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2774:47:3"
+            },
+            "returnParameters": {
+              "id": 787,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2838:0:3"
+            },
+            "scope": 826,
+            "src": "2759:80:3",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 789,
+              "nodeType": "StructuredDocumentation",
+              "src": "2845:386:3",
+              "text": " @dev Compute the cost of appeal. It is recommended not to increase it often, as it can be higly time and gas consuming for the arbitrated contracts to cope with fee augmentation.\n @param _disputeID ID of the dispute to be appealed.\n @param _extraData Can be used to give additional info on the dispute to be created.\n @return cost Amount to be paid."
+            },
+            "functionSelector": "f23f16e6",
+            "id": 798,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appealCost",
+            "nameLocation": "3245:10:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 794,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 791,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3264:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3256:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 790,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3256:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 793,
+                  "mutability": "mutable",
+                  "name": "_extraData",
+                  "nameLocation": "3291:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3276:25:3",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 792,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3276:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3255:47:3"
+            },
+            "returnParameters": {
+              "id": 797,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 796,
+                  "mutability": "mutable",
+                  "name": "cost",
+                  "nameLocation": "3334:4:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 798,
+                  "src": "3326:12:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 795,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3326:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3325:14:3"
+            },
+            "scope": 826,
+            "src": "3236:104:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 799,
+              "nodeType": "StructuredDocumentation",
+              "src": "3346:302:3",
+              "text": " @dev Compute the start and end of the dispute's current or next appeal period, if possible. If not known or appeal is impossible: should return (0, 0).\n @param _disputeID ID of the dispute.\n @return start The start of the period.\n @return end The end of the period."
+            },
+            "functionSelector": "afe15cfb",
+            "id": 808,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "appealPeriod",
+            "nameLocation": "3662:12:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 802,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 801,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3683:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3675:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 800,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3675:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3674:20:3"
+            },
+            "returnParameters": {
+              "id": 807,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 804,
+                  "mutability": "mutable",
+                  "name": "start",
+                  "nameLocation": "3726:5:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3718:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 803,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3718:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 806,
+                  "mutability": "mutable",
+                  "name": "end",
+                  "nameLocation": "3741:3:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 808,
+                  "src": "3733:11:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 805,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3733:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3717:28:3"
+            },
+            "scope": 826,
+            "src": "3653:93:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 809,
+              "nodeType": "StructuredDocumentation",
+              "src": "3752:156:3",
+              "text": " @dev Return the status of a dispute.\n @param _disputeID ID of the dispute to rule.\n @return status The status of the dispute."
+            },
+            "functionSelector": "10f169e8",
+            "id": 817,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "disputeStatus",
+            "nameLocation": "3922:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 812,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 811,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "3944:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 817,
+                  "src": "3936:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 810,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3936:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3935:20:3"
+            },
+            "returnParameters": {
+              "id": 816,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 815,
+                  "mutability": "mutable",
+                  "name": "status",
+                  "nameLocation": "3993:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 817,
+                  "src": "3979:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_DisputeStatus_$738",
+                    "typeString": "enum IArbitrator.DisputeStatus"
+                  },
+                  "typeName": {
+                    "id": 814,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 813,
+                      "name": "DisputeStatus",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 738,
+                      "src": "3979:13:3"
+                    },
+                    "referencedDeclaration": 738,
+                    "src": "3979:13:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_DisputeStatus_$738",
+                      "typeString": "enum IArbitrator.DisputeStatus"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3978:22:3"
+            },
+            "scope": 826,
+            "src": "3913:88:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 818,
+              "nodeType": "StructuredDocumentation",
+              "src": "4007:273:3",
+              "text": " @dev Return the current ruling of a dispute. This is useful for parties to know if they should appeal.\n @param _disputeID ID of the dispute.\n @return ruling The ruling which has been given or the one which will be given if there is no appeal."
+            },
+            "functionSelector": "1c3db16d",
+            "id": 825,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentRuling",
+            "nameLocation": "4294:13:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 821,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 820,
+                  "mutability": "mutable",
+                  "name": "_disputeID",
+                  "nameLocation": "4316:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 825,
+                  "src": "4308:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 819,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4308:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4307:20:3"
+            },
+            "returnParameters": {
+              "id": 824,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 823,
+                  "mutability": "mutable",
+                  "name": "ruling",
+                  "nameLocation": "4359:6:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 825,
+                  "src": "4351:14:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 822,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4351:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4350:16:3"
+            },
+            "scope": 826,
+            "src": "4285:82:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 827,
+        "src": "688:3681:3",
+        "usedErrors": []
+      }
+    ],
+    "src": "161:4209:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-25T09:30:05.548Z",
+  "devdoc": {
+    "events": {
+      "AppealDecision(uint256,address)": {
+        "details": "To be emitted when the current ruling is appealed.",
+        "params": {
+          "_arbitrable": "The contract which created the dispute.",
+          "_disputeID": "ID of the dispute."
+        }
+      },
+      "AppealPossible(uint256,address)": {
+        "details": "To be emitted when a dispute can be appealed.",
+        "params": {
+          "_arbitrable": "The contract which created the dispute.",
+          "_disputeID": "ID of the dispute."
+        }
+      },
+      "DisputeCreation(uint256,address)": {
+        "details": "To be emitted when a dispute is created.",
+        "params": {
+          "_arbitrable": "The contract which created the dispute.",
+          "_disputeID": "ID of the dispute."
+        }
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "appeal(uint256,bytes)": {
+        "details": "Appeal a ruling. Note that it has to be called before the arbitrator contract calls rule.",
+        "params": {
+          "_disputeID": "ID of the dispute to be appealed.",
+          "_extraData": "Can be used to give extra info on the appeal."
+        }
+      },
+      "appealCost(uint256,bytes)": {
+        "details": "Compute the cost of appeal. It is recommended not to increase it often, as it can be higly time and gas consuming for the arbitrated contracts to cope with fee augmentation.",
+        "params": {
+          "_disputeID": "ID of the dispute to be appealed.",
+          "_extraData": "Can be used to give additional info on the dispute to be created."
+        },
+        "returns": {
+          "cost": "Amount to be paid."
+        }
+      },
+      "appealPeriod(uint256)": {
+        "details": "Compute the start and end of the dispute's current or next appeal period, if possible. If not known or appeal is impossible: should return (0, 0).",
+        "params": {
+          "_disputeID": "ID of the dispute."
+        },
+        "returns": {
+          "end": "The end of the period.",
+          "start": "The start of the period."
+        }
+      },
+      "arbitrationCost(bytes)": {
+        "details": "Compute the cost of arbitration. It is recommended not to increase it often, as it can be highly time and gas consuming for the arbitrated contracts to cope with fee augmentation.",
+        "params": {
+          "_extraData": "Can be used to give additional info on the dispute to be created."
+        },
+        "returns": {
+          "cost": "Amount to be paid."
+        }
+      },
+      "createDispute(uint256,bytes)": {
+        "details": "Create a dispute. Must be called by the arbitrable contract. Must be paid at least arbitrationCost(_extraData).",
+        "params": {
+          "_choices": "Amount of choices the arbitrator can make in this dispute.",
+          "_extraData": "Can be used to give additional info on the dispute to be created."
+        },
+        "returns": {
+          "disputeID": "ID of the dispute created."
+        }
+      },
+      "currentRuling(uint256)": {
+        "details": "Return the current ruling of a dispute. This is useful for parties to know if they should appeal.",
+        "params": {
+          "_disputeID": "ID of the dispute."
+        },
+        "returns": {
+          "ruling": "The ruling which has been given or the one which will be given if there is no appeal."
+        }
+      },
+      "disputeStatus(uint256)": {
+        "details": "Return the status of a dispute.",
+        "params": {
+          "_disputeID": "ID of the dispute to rule."
+        },
+        "returns": {
+          "status": "The status of the dispute."
+        }
+      }
+    },
+    "title": "Arbitrator Arbitrator abstract contract. When developing arbitrator contracts we need to: - Define the functions for dispute creation (createDispute) and appeal (appeal). Don't forget to store the arbitrated contract and the disputeID (which should be unique, may nbDisputes). - Define the functions for cost display (arbitrationCost and appealCost). - Allow giving rulings. For this a function must call arbitrable.rule(disputeID, ruling).",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
